@@ -27,12 +27,14 @@ function hacerGraficaDiagnostico()
                     label: '',
                     data: [datos[0].Condiagnostico, datos[0].Sindiagnostico],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)'
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
                     ],
                     borderWidth: 1
                 }]
@@ -64,7 +66,7 @@ function hacerGraficaGeneros()
 {
     var ctx = document.getElementById('myChartG').getContext('2d');
     var myChart = new Chart(ctx,  {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: ['Maculinos', 'Femeninos'],
             datasets: [{
