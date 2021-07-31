@@ -116,18 +116,28 @@
                     </div>
                 </div>
             </div>      
-            <div class="col-6 p-0 m-0" style="width: 100%; height:  100px" >
+            <div class="col-6 p-0 mb-0" style="width: 100%;" >
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">Promedio</h5> 
-                        <canvas id="myChartP" width="60" height="60"></canvas>
+                       
+                            <canvas id="myChartP" width="50" height="50"></canvas>
+                       
                         <p class="card-text"></p>                                              
                     </div>
                 </div>
             </div> 
         </div>
-        <div class="row" >
-
+        <div class="row" style="margin-top: 1px" >                      
+                <div  class="col-12">
+                    <div style="font: bold">Consulta de información por paciente:</div><br>
+                </div>                                             
+                <div class="col-10">
+                    <input  class="form-control" type="text" placeholder="">
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-danger" type="button" >Buscar</button>
+                </div>           
         </div>
     </did>
 

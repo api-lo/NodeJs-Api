@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mysqlConnection  = require('../database.js');
 
-
 // GET all Employees
 router.get('/Ngeneros', (req, res) => {
   mysqlConnection.query('SELECT *from Ngeneros ', (err, rows, fields) => {
@@ -61,8 +60,6 @@ router.get('/:id', (req, res) => {
   });
 });
 router.post('/insert', (req, res) => {
-  //const { FechaCompra, codigo,categoria,unidades,cantidad,precio} = req.body; 
-  //console.log(Nombre, FechaCompra, codigo); 
   const query = "INSERT INTO "+
   "`insumo`( `Nombre`, `codigo`, `categoria`, `unidades`, `cantidad`, `precio`)"+
   " VALUES ('"+req.body.Nombre+"','"+req.body.Nombre+"','"+req.body.Nombre+"','"+req.body.Nombre+"','"+req.body.Nombre+"','"+req.body.Nombre+"')";

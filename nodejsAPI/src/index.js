@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 var cors = require('cors')
 // cors
-
+app.use(cors())
 app.options('*', cors()) 
 // Settings
 app.set('port', process.env.PORT || 3000);
 
 // Middlewares
-//app.use();
+app.use(express.json());
 
 // Routes
 app.use(require('./routes/employees'));
