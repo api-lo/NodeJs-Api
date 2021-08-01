@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mysqlConnection  = require('../database.js');
 
-// GET all Employees
 router.get('/Ngeneros', (req, res) => {
   mysqlConnection.query('SELECT *from Ngeneros ', (err, rows, fields) => {
     if(!err) {
@@ -51,7 +50,7 @@ router.get('/promedios', (req, res) => {
 // GET An Employee
 router.get('/:id', (req, res) => {
   const { id } = req.params; 
-  mysqlConnection.query('SELECT * FROM examenes WHERE ID = ?', [id], (err, rows, fields) => {
+  mysqlConnection.query('SELECT`Leucocitos`,`Hemoglobina`,`Hematocrito`,`Hematies`,`VCM`,`HCM`,`CHCM`,`RDWCV`,`Linfocitos`,`Monocitos`,`Eosinofilos`,`Basofilos`,`VPM`,`Plaquetas` FROM `examenes` WHERE `DNI`=? LIMIT 1', [id], (err, rows, fields) => {
     if (!err) {
       res.json(rows[0]);
     } else {
