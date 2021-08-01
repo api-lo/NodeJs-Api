@@ -65,7 +65,7 @@ function consultadatosNodejsGeneros() {
 function hacerGraficaGeneros()
 {
     var ctx = document.getElementById('myChartG').getContext('2d');
-    var myChart = new Chart(ctx,  {
+    var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ['Maculinos', 'Femeninos'],
@@ -91,7 +91,7 @@ function hacerGraficaGeneros()
             }
         }
     });
-    
+
 
 }
 var datoAnio;
@@ -152,16 +152,16 @@ var promedio;
 function promedioGrafica(Json) {
     promedio = Json;
     console.log(promedio);
-    var ctx = document.getElementById('myChartP').getContext('2d');      
+    var ctx = document.getElementById('myChartP').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['pHemoglobina','pVCM','pHCM','pCHCM','pRDWCV','pLinfocitos','pMonocitos','pEosinofilos','pVPM'],
+            labels: ['pHemoglobina', 'pVCM', 'pHCM', 'pCHCM', 'pRDWCV', 'pLinfocitos', 'pMonocitos', 'pEosinofilos', 'pVPM'],
             datasets: [{
 
-                    label:'Promedio',
-                    data: [ promedio[0].pHemoglobina
-                                ,  promedio[0].pVCM, promedio[0].pHCM
+                    label: 'Promedio',
+                    data: [promedio[0].pHemoglobina
+                                , promedio[0].pVCM, promedio[0].pHCM
                                 , promedio[0].pCHCM, promedio[0].pRDWCV, promedio[0].pLinfocitos
                                 , promedio[0].pMonocitos, promedio[0].pEosinofilos
                                 , promedio[0].pVPM],
@@ -179,10 +179,10 @@ function promedioGrafica(Json) {
         options: {
             scales: {
                 yAxes: [
-                        {
+                    {
                         ticks: {beginAtZero: false}
-                        }
-                        ]
+                    }
+                ]
             }
         }
     });
@@ -196,55 +196,55 @@ function promedioDiagnosticos() {
         method: "GET",
         url: "http://localhost:3000/gDiagnostico",
         success: function (data) {
-            promedioDiagnostico=data;
+            promedioDiagnostico = data;
             graficaPromedioDiagnosticos(promedioDiagnostico);
         },
-        error: function (data) {           
+        error: function (data) {
         }
     });
 }
-var lista_anemia=[];
-var lista_infeccion=[];
-var lista_alergias=[];
-var lista_poliglobulia=[];
+var lista_anemia = [];
+var lista_infeccion = [];
+var lista_alergias = [];
+var lista_poliglobulia = [];
 function graficaPromedioDiagnosticos(json)
-{        
-    for(var i=0;i<json.length;i++)
-    {   
-        var variable=json[i].Diagnosticos.toString().split(":");       
-        lista_anemia.push(variable[1].replace("infeccion",""));
-        lista_infeccion.push(variable[2].replace("alegias",""));
-        lista_alergias.push(variable[3].replace("Poliglobulia",""));
+{
+    for (var i = 0; i < json.length; i++)
+    {
+        var variable = json[i].Diagnosticos.toString().split(":");
+        lista_anemia.push(variable[1].replace("infeccion", ""));
+        lista_infeccion.push(variable[2].replace("alegias", ""));
+        lista_alergias.push(variable[3].replace("Poliglobulia", ""));
         lista_poliglobulia.push(variable[4]);
-        
-    } 
+
+    }
     formaGraficaAlergia();
     formaGraficaInfeccion();
     formaGraficaAnemia();
     formaGraficaPoligogulia();
     ultimate();
 }
-var Sin=0,bac=0,para=0,viral=0;
+var Sin = 0, bac = 0, para = 0, viral = 0;
 function formaGraficaInfeccion()
 {
-    Sin=0,bac=0,para=0,viral=0;
-     for(var i=0;i<lista_infeccion.length;i++)
+    Sin = 0, bac = 0, para = 0, viral = 0;
+    for (var i = 0; i < lista_infeccion.length; i++)
     {
-        if(lista_infeccion[i].trim()=="Sin infeccón")
+        if (lista_infeccion[i].trim() == "Sin infeccón")
         {
-            Sin=Sin+1;
+            Sin = Sin + 1;
         }
-        if(lista_infeccion[i].trim()=="Bacteriana")
+        if (lista_infeccion[i].trim() == "Bacteriana")
         {
-             bac=bac+1;
+            bac = bac + 1;
         }
-        if(lista_infeccion[i].trim()=="Viral")
+        if (lista_infeccion[i].trim() == "Viral")
         {
-             viral=viral+1;
+            viral = viral + 1;
         }
-        if(lista_infeccion[i].trim()=="Parasitaria")
+        if (lista_infeccion[i].trim() == "Parasitaria")
         {
-             para=para+1;
+            para = para + 1;
         }
     }
     console.log(lista_infeccion.length);
@@ -252,15 +252,15 @@ function formaGraficaInfeccion()
     console.log(bac);
     console.log(para);
     console.log(viral);
-    console.log(Sin+bac+para+viral);
-        
-    var ctx = document.getElementById('myChartY').getContext('2d');      
+    console.log(Sin + bac + para + viral);
+
+    var ctx = document.getElementById('myChartY').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Sin infeccón', 'Bacteriana','Viral','Parasitaria','Desconocido'],
-            datasets: [{                    
-                    data: [Sin, bac,viral,para,Sin+bac+para+viral],
+            labels: ['Sin infeccón', 'Bacteriana', 'Viral', 'Parasitaria', 'Desconocido'],
+            datasets: [{
+                    data: [Sin, bac, viral, para, Sin + bac + para + viral],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
@@ -280,24 +280,24 @@ function formaGraficaInfeccion()
             }
         }
     });
-    
-    
+
+
 }
-  var cox=0, coy=0;
+var cox = 0, coy = 0;
 function formaGraficaAlergia()
 {
-     cox=0;
-     for(var i=0;i<lista_alergias.length;i++)
+    cox = 0;
+    for (var i = 0; i < lista_alergias.length; i++)
     {
-        if(lista_alergias[i].trim()=="False")
+        if (lista_alergias[i].trim() == "False")
         {
-            cox=cox+1;
+            cox = cox + 1;
         }
-    
+
     }
-     coy=lista_alergias.length-cox;
-        
-    var ctx = document.getElementById('myChartX').getContext('2d');      
+    coy = lista_alergias.length - cox;
+
+    var ctx = document.getElementById('myChartX').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -324,24 +324,24 @@ function formaGraficaAlergia()
             }
         }
     });
-    
-    
+
+
 }
-var coxA=0, coyA=0;
+var coxA = 0, coyA = 0;
 function formaGraficaAnemia()
 {
-     coxA=0;
-     for(var i=0;i<lista_anemia.length;i++)
+    coxA = 0;
+    for (var i = 0; i < lista_anemia.length; i++)
     {
-        if(lista_anemia[i].trim()=="Sin anemia")
+        if (lista_anemia[i].trim() == "Sin anemia")
         {
-            coxA=coxA+1;
-        }         
-    
+            coxA = coxA + 1;
+        }
+
     }
-     coyA=lista_anemia.length-coxA;
-        
-    var ctx = document.getElementById('myChartZ').getContext('2d');      
+    coyA = lista_anemia.length - coxA;
+
+    var ctx = document.getElementById('myChartZ').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -368,24 +368,24 @@ function formaGraficaAnemia()
             }
         }
     });
-    
-    
+
+
 }
-var coxP=0, coyP=0;
+var coxP = 0, coyP = 0;
 function formaGraficaPoligogulia()
 {
-    coxP=0;
-     for(var i=0;i<lista_poliglobulia.length;i++)
+    coxP = 0;
+    for (var i = 0; i < lista_poliglobulia.length; i++)
     {
-        if(lista_poliglobulia[i].trim()=="False")
+        if (lista_poliglobulia[i].trim() == "False")
         {
-            coxP=coxP+1;
+            coxP = coxP + 1;
         }
-    
+
     }
-    coyP=lista_alergias.length-coxP;
-        
-    var ctx = document.getElementById('myChartW').getContext('2d');      
+    coyP = lista_alergias.length - coxP;
+
+    var ctx = document.getElementById('myChartW').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -412,19 +412,19 @@ function formaGraficaPoligogulia()
             }
         }
     });
-    
-    
+
+
 }
 function ultimate()
-{                
-    var ctx = document.getElementById('myChartUltimate').getContext('2d');      
+{
+    var ctx = document.getElementById('myChartUltimate').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Infecciones', 'Alergias','Anemia','Poligogulia'],
+            labels: ['Infecciones', 'Alergias', 'Anemia', 'Poligogulia'],
             datasets: [{
                     label: '',
-                    data: [(bac+para+viral),cox,coxA,coxP],
+                    data: [(bac + para + viral), cox, coxA, coxP],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
@@ -438,11 +438,94 @@ function ultimate()
         },
         options: {
             scales: {
-               
+
             }
         }
     });
-    
-    
+
+
 }
 
+var ssas;
+function Porpaciente() {
+    var DNI = document.getElementById("DNIbuscar").value;
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/" + DNI + "",
+        success: function (data) {
+            console.log(data);
+            ssas = data;
+            porUsuario2(data);
+            porUsuario(data);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+function porUsuario2(json)
+{
+    var ctx = document.getElementById('myChartUsuario2').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Hematies', 'Plaquetas', 'Leucocitos'],
+            datasets: [{
+                    label: 'asdsa',
+                    data: [json.Hematies, json.Plaquetas + 8, json.Leucocitos + 10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            }
+        }
+    });
+}
+function porUsuario(json)
+{
+    delete json.Hematies;
+    delete json.Plaquetas;
+    delete json.Leucocitos;
+    var ctx = document.getElementById('myChartUsuario').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+            datasets: [{
+                    label: '',
+                    data: json,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+}
