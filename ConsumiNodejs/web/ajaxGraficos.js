@@ -422,6 +422,11 @@ function ultimate()
         type: 'line',
         data: {
             labels: ['Infecciones', 'Alergias', 'Anemia', 'Poligogulia'],
+<<<<<<< Updated upstream
+            datasets: [{
+                    label: '',
+                    data: [(bac + para + viral), cox, coxA, coxP],
+=======
             datasets: [{
                     label: '',
                     data: [(bac + para + viral), cox, coxA, coxP],
@@ -439,6 +444,95 @@ function ultimate()
         options: {
             scales: {
 
+            }
+        }
+    });
+
+
+}
+
+var ssas;
+function Porpaciente() {
+    var DNI = document.getElementById("DNIbuscar").value;
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/" + DNI + "",
+        success: function (data) {
+            console.log(data);
+            ssas = data;
+            porUsuario2(data);
+            porUsuario(data);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+}
+function porUsuario2(json)
+{
+    var ctx = document.getElementById('myChartUsuario2').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Hematies', 'Plaquetas', 'Leucocitos'],
+            datasets: [{
+                    label: 'asdsa',
+                    data: [json.Hematies, json.Plaquetas + 8, json.Leucocitos + 10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            indexAxis: 'y',
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            }
+        }
+    });
+}
+function porUsuario(json)
+{
+    delete json.Hematies;
+    delete json.Plaquetas;
+    delete json.Leucocitos;
+    var ctx = document.getElementById('myChartUsuario').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+
+            datasets: [{
+                    label: '',
+                    data: json,
+>>>>>>> Stashed changes
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            scales: {
+<<<<<<< Updated upstream
+
+=======
+                y: {
+                    beginAtZero: true
+                }
+>>>>>>> Stashed changes
             }
         }
     });

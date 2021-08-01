@@ -128,20 +128,35 @@
                 </div>
             </div> 
         </div>
-        <div class="row" style="margin-top: 1px" >                      
+        
+        <div class="row" style="margin-top: 1px" >  
+            <div>
+                
+            </div>
                 <div  class="col-12">
-                    <div style="font: bold">Consulta de información por paciente:</div><br>
+                    <h4 style="font: bold">Consulta de información por paciente:</h4><br>
                 </div>                                             
                 <div class="col-10">
-                    <input  class="form-control" type="text" placeholder="">
+                    <input id="DNIbuscar" class="form-control" type="text" placeholder="">
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-danger" type="button" >Buscar</button>
+                    <button class="btn btn-danger" onclick="Porpaciente()" type="button" >Buscar</button>
                 </div>           
         </div>
+        
+        <div class="row">
+            <div class="col-8">
+                <div style="width: 100%; height: 100px">
+                    <canvas id="myChartUsuario"></canvas>
+                </div>                  
+            </div>
+            <div class="col-4">
+                <div style="width: 100%; height: 100px">
+                    <canvas id="myChartUsuario2"></canvas>
+                </div>
+            </div>
+        </div>
     </did>
-
-
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -158,7 +173,6 @@
                             Toda la información debe ser llenada
                         </div>
                         <div class="form-row">
-
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Nombre:</label>
                                 <input name="Nombre" type="text" class="form-control form-control-sm" id="inputEmail4" >
@@ -168,7 +182,6 @@
                                 <input name="Apellido"  type="text" class="form-control form-control-sm" id="inputPassword4" >
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputEmail4">Fecha nacimientos:</label>
@@ -187,7 +200,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label  for="inputEmail4">Leucocitos:</label>
